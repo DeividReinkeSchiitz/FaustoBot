@@ -1,0 +1,41 @@
+const commands = [
+  "!vai-more",
+  "!errou",
+  "!ta-pegando-fogo",
+  "!arquivo-confidencial",
+  "!eita",
+  "!fausto-in-love",
+  "!faustop",
+  "!frango",
+  "!hora-da-alegria",
+  "!oloko-bicho",
+  "!ninguem-acertou",
+  "!olokinho",
+  "!porra-meu-ala",
+  "!vilma",
+  "!voce-destruiu-o-meu-ovo",
+  "!olokinho-ta-pegando",
+  "!bom-dia",
+];
+
+const files = [
+  "ce-vai-morre-faustao",
+  "errou_3.mp3",
+  "churrasqueira-eletrica-pegando-fogo-ao-vivo-no-faustao",
+  "domingao-do-faustao-arquivo-confidencial-convert-video-online",
+  "eita_4",
+  "fausto-is-love-fausto-is-life-fin",
+  "faustop-faustao",
+  "frango_tJTQwzg",
+  "horadealegria",
+  "mas-oloko-bicho",
+  "ninguem-acertou",
+  "olokinho-meu-faustaozinho",
+  "porra-meu-ala",
+  "vilma",
+  "voce-destruiu-o-meu-ovo",
+  "ta-pegando-fogo-bicho-oloco-meu-faustaozinho",
+  "vht",
+];
+
+module.exports = { files, commands };
