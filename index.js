@@ -1,11 +1,12 @@
 require("dotenv/config");
+
 const { Client, MessageEmbed, Collection } = require("discord.js");
 const { files, commands } = require("./data");
 
 const client = new Client();
 const newUsers = new Collection();
 
-const token = "Njk1ODAxMzEzNjAyMTc1MDA2.Xoj06w.I0aQNzHFyh6t4FZ7ns4kQ6-05F4";
+const token = process.env.TOKEN;
 client.login(token);
 
 client.on("guildMemberAdd", (member) => {
