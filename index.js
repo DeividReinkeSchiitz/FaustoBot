@@ -4,84 +4,46 @@ const { Client, MessageEmbed, Collection } = require("discord.js");
 const { files, commands } = require("./data");
 
 const client = new Client();
-const newUsers = new Collection();
 
-const token = process.env.TOKEN;
-client.login(token);
-
-client.on("guildMemberAdd", (member) => {
-  const guild = member.guild;
-  newUsers.set(member.id, member.user);
-  console.log(member);
-
-  if (newUsers.size > 10) {
-    const defaultChannel = guild.channels.find((channel) =>
-      channel.permissionsFor(guild.me).has("SEND_MESSAGES")
-    );
-    const userlist = newUsers.map((u) => u.toString()).join(" ");
-    defaultChannel.send("EEEITA BIXO\n" + userlist);
-    newUsers.clear();
-  }
-});
-
-client.on("message", async (message) => {
+client.on("message", (message) => {
   if (!message.guild) return;
 
-  //ADD ALL AUDIOS
-  files.map((fil, index) => {
-    let pathName = commands[index];
-    AddAudio(message, pathName, fil);
-  });
+  if (message.content === "!comandos") message.channel.send(callCommands);
 
-  //ASK FOR SHARE COMMANDS
-  callCommands(message);
+  //ADD ALL AUDIOS
+  files.map((fileMusicName, index) => {
+    let command = commands[index];
+    AddAudios(message, command, fileMusicName);
+  });
 });
 
-async function AddAudio(message, name, path) {
-  if (message.content === name) {
+async function AddAudios(message, command, fileMusicName) {
+  if (message.content == command) {
+    // IF YOU ARE CONNECTED IN A CHANNEL
     if (message.member.voice.channel) {
       try {
+        //JOIN THE BOT TO YOUR VOICE CHANNEL
         const connection = await message.member.voice.channel.join();
-        const dispatcher = connection.play("music/" + path + ".mp3");
+
+        const dispatcher = connection.play("./music/" + fileMusicName + ".mp3");
 
         dispatcher.setVolume(1);
 
         dispatcher.on("start", () => {});
       } catch (error) {
-        if (error) throw error;
+        console.log(error);
       }
     } else {
-      message.reply("You need to join a voice channel first!");
+      return message.reply("You need to join a voice channel first!");
     }
   }
 }
 
-function callCommands(msg) {
-  if (msg.content === "!comandos") {
-    const embed = new MessageEmbed()
-      .setColor("#050754")
-      .setTitle("OIA OS COMANDOS AI MEU OOOOOLOKO")
-      .addFields({ name: "Comandos", value: commands });
-    /*     embed.setAuthor("created by: Deivid Reinke Schiitz"); */
-    msg.channel.send(embed);
-  }
-}
+const callCommands = new MessageEmbed()
+  .setColor("#050754")
+  .setTitle("OIA OS COMANDOS AI MEU OOOOOLOKO")
+  .addFields({ name: "Comandos", value: commands });
+/*     embed.setAuthor("created by: Deivid Reinke Schiitz"); */
 
-function RamdomVoiceOnPressKey(message) {
-  ioHook.on("keydown", async (event) => {
-    var tecla = String.fromCharCode(event.rawcode).toLowerCase();
-    if (tecla == ".") {
-      if (message.member.voice.channel) {
-        const connection = await message.member.voice.channel.join();
-        let P = files[Math.floor(Math.random() * 18)];
-        const dispatcher = connection.play("music/" + P + ".mp3");
-
-        dispatcher.setVolume(1); // half the volume
-
-        dispatcher.on("start", () => {});
-      } else {
-        message.reply("You need to join a voice channel first!");
-      }
-    }
-  });
-}
+const token = process.env.TOKEN;
+client.login(token);

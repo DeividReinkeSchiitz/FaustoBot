@@ -22,7 +22,7 @@ const commands = [
 
 const files = [
   "ce-vai-morre-faustao",
-  "errou_3.mp3",
+  "errou_3",
   "churrasqueira-eletrica-pegando-fogo-ao-vivo-no-faustao",
   "domingao-do-faustao-arquivo-confidencial-convert-video-online",
   "eita_4",
