@@ -1,34 +1,54 @@
 require("dotenv/config");
-const { Client, MessageEmbed } = require("discord.js");
+const { Client, MessageEmbed, Collection } = require("discord.js");
 const { files, commands } = require("./data");
 
 const client = new Client();
+const newUsers = new Collection();
 
-const token = process.env.TOKEN;
+const token = "Njk1ODAxMzEzNjAyMTc1MDA2.Xoj06w.I0aQNzHFyh6t4FZ7ns4kQ6-05F4";
 client.login(token);
+
+client.on("guildMemberAdd", (member) => {
+  const guild = member.guild;
+  newUsers.set(member.id, member.user);
+  console.log(member);
+
+  if (newUsers.size > 10) {
+    const defaultChannel = guild.channels.find((channel) =>
+      channel.permissionsFor(guild.me).has("SEND_MESSAGES")
+    );
+    const userlist = newUsers.map((u) => u.toString()).join(" ");
+    defaultChannel.send("EEEITA BIXO\n" + userlist);
+    newUsers.clear();
+  }
+});
 
 client.on("message", async (message) => {
   if (!message.guild) return;
 
-  callCommands(message);
-
+  //ADD ALL AUDIOS
   files.map((fil, index) => {
     let pathName = commands[index];
     AddAudio(message, pathName, fil);
   });
-});
 
-// Register and start hook
+  //ASK FOR SHARE COMMANDS
+  callCommands(message);
+});
 
 async function AddAudio(message, name, path) {
   if (message.content === name) {
     if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
-      const dispatcher = connection.play("music/" + path + ".mp3");
+      try {
+        const connection = await message.member.voice.channel.join();
+        const dispatcher = connection.play("music/" + path + ".mp3");
 
-      dispatcher.setVolume(0.9); // half the volume
+        dispatcher.setVolume(1);
 
-      dispatcher.on("start", () => {});
+        dispatcher.on("start", () => {});
+      } catch (error) {
+        if (error) throw error;
+      }
     } else {
       message.reply("You need to join a voice channel first!");
     }

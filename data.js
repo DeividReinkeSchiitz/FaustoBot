@@ -16,6 +16,8 @@ const commands = [
   "!voce-destruiu-o-meu-ovo",
   "!olokinho-ta-pegando",
   "!bom-dia",
+  "!love",
+  "!txau",
 ];
 
 const files = [
@@ -36,6 +38,8 @@ const files = [
   "voce-destruiu-o-meu-ovo",
   "ta-pegando-fogo-bicho-oloco-meu-faustaozinho",
   "vht",
+  "romance",
+  "Isso_e_tudo_pessoa",
 ];
 
 module.exports = { files, commands };
