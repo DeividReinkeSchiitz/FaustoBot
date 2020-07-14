@@ -1,5 +1,6 @@
 require("dotenv/config");
 
+const path = require("path");
 const { Client, MessageEmbed, Collection } = require("discord.js");
 const { files, commands } = require("./data");
 
@@ -24,8 +25,8 @@ async function AddAudios(message, command, fileMusicName) {
       try {
         //JOIN THE BOT TO YOUR VOICE CHANNEL
         const connection = await message.member.voice.channel.join();
-
-        const dispatcher = connection.play("./music/" + fileMusicName + ".mp3");
+        const musicPath = path.join("music", fileMusicName);
+        const dispatcher = connection.play(musicPath + ".mp3");
 
         dispatcher.setVolume(1);
 
