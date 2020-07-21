@@ -20,11 +20,11 @@ client.on("message", (message) => {
 
   //ADD ALL AUDIOS
   commands.map((command, index) => {
-    AddAudios(message, command, index);
+    addAudios(message, command, index);
   });
 });
 
-async function AddAudios(message, command, index) {
+async function addAudios(message, command) {
   //if the user message it's the same as one of the commands
   if (message.content == command) {
     // IF YOU ARE CONNECTED IN A CHANNEL
@@ -33,7 +33,7 @@ async function AddAudios(message, command, index) {
         //JOIN THE BOT TO YOUR VOICE CHANNEL
         const connection = await message.member.voice.channel.join();
 
-        const musicFile = command.replace("!", "").concat(".mp3");
+        const musicFile = command.replace(signal, "").concat(".mp3");
         const currentMusicFile = path.join(musicFolder, musicFile);
         const dispatcher = connection.play(currentMusicFile);
 
