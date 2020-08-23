@@ -1,37 +1,22 @@
-# FaustoBot
+# Qacademic
+App to view Qacademic users data.
 
-FaustoBot or FausTop (for the most intimate) is a simple bot for Discord that speaks some audios from Faustão.
+# Task lists
+- [ ] Finish Api
+- [ ] Finish Mobile App
+- [ ] Finish Web App
 
-## Usage
 
-paste it in yout URL:
+## API usage
+### Local Machine:
+   git clone `git@github.com:DeividReinkeSchiitz/Qacademic.git`
+   <br/>
+   cd server.<br/>
+   yarn.<br/>
+   yarn dev.<br/>
+### Web Api:
 
-https://discord.com/oauth2/authorize?client_id=695801313602175006&scope=bot&permissions=8
+## Mobile App
 
-## Commands Bot
-See all his commands in discord with: "!comandos".
-
-Another commands:
-  "!vai-more",
-  "!errou",
-  "!ta-pegando-fogo",
-  "!arquivo-confidencial",
-  "!eita",
-  "!fausto-in-love",
-  "!faustop",
-  "!frango",
-  "!hora-da-alegria",
-  "!oloko-bicho",
-  "!ninguem-acertou",
-  "!olokinho",
-  "!porra-meu-ala",
-  "!vilma",
-  "!voce-destruiu-o-meu-ovo",
-  "!olokinho-ta-pegando",
-  "!bom-dia",
-  "!love",
-  "!txau",
-  
 ## Contributing
-
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
