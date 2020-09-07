@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { Client, MessageEmbed, Collection } = require("discord.js");
+const { start } = require("repl");
 const client = new Client();
 
 const musicFolder = "music";
@@ -11,6 +12,7 @@ const signal = "!";
 const commands = fs
   .readdirSync(musicFolder)
   .map((file) => signal.concat(file.slice(0, file.indexOf(".mp3"))));
+
 
 client.on("message", (message) => {
   if (!message.guild) return;
@@ -24,11 +26,18 @@ client.on("message", (message) => {
   });
 });
 
+
 async function addAudios(message, command) {
+  let timeoutID;
+
   //if the user message it's the same as one of the commands
   if (message.content == command) {
+
     // IF YOU ARE CONNECTED IN A CHANNEL
     if (message.member.voice.channel) {
+      clearTimeout(timeoutID)
+      timeoutID = undefined
+
       try {
         //JOIN THE BOT TO YOUR VOICE CHANNEL
         const connection = await message.member.voice.channel.join();
@@ -40,6 +49,11 @@ async function addAudios(message, command) {
         dispatcher.setVolume(1);
 
         dispatcher.on("start", () => {});
+
+       timeoutID = setTimeout(async () => {
+          await message.member.voice.channel.leave()
+        }, 1000 * 60 * 5);
+
       } catch (error) {
         console.log(error);
       }
@@ -48,6 +62,8 @@ async function addAudios(message, command) {
     }
   }
 }
+
+
 
 const callCommands = new MessageEmbed()
   .setColor("#050754")
