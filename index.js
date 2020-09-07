@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 
 const { Client, MessageEmbed, Collection } = require("discord.js");
-const { start } = require("repl");
 const client = new Client();
 
 const musicFolder = "music";
@@ -51,8 +50,8 @@ async function addAudios(message, command) {
         dispatcher.on("start", () => {});
 
        timeoutID = setTimeout(async () => {
-          await message.member.voice.channel.leave()
-        }, 1000 * 60 * 5);
+        await message.member.voice.channel.leave()
+        }, 1000 * 60 * 2);
 
       } catch (error) {
         console.log(error);
