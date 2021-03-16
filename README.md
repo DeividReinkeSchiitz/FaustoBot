@@ -35,3 +35,7 @@ Another commands:
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+### Observations...
+
+The bot is in a free hosting and in the end of the month maybe doesn't work.
