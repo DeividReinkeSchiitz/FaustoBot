@@ -1,15 +1,16 @@
 {
-  "name": "faustobot",
+  "name": "farosounds",
   "dependencies": {
     "@discordjs/opus": "discordjs/opus",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
-    "ffmpeg-static": "^4.2.5"
+    "ffmpeg-static": "^4.2.5",
+    "node-opus": "^0.3.3",
+    "opusscript": "^0.0.8"
   },
   "description": "Make your friends happy with FaustoBot",
   "version": "1.0.0",
   "engines": {
-    "node": "12.10.0",
-    "yarn": "1.21.1"
+    "node": "12.10.0"
   }
 }

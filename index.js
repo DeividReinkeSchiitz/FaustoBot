@@ -3,11 +3,11 @@ require("dotenv/config");
 const fs = require("fs");
 const path = require("path");
 
-const { Client, MessageEmbed, Collection } = require("discord.js");
+const { Client, MessageEmbed } = require("discord.js");
 const client = new Client();
 
 const musicFolder = "music";
-const signal = "!";
+const signal = "-";
 const commands = fs
   .readdirSync(musicFolder)
   .map((file) => signal.concat(file.slice(0, file.indexOf(".mp3"))));
@@ -17,7 +17,7 @@ client.on("message", (message) => {
   if (!message.guild) return;
 
   //send all the commands
-  if (message.content === "!comandos") message.channel.send(callCommands);
+  if (message.content === "-comandos") message.channel.send(callCommands);
 
   //ADD ALL AUDIOS
   commands.map((command, index) => {
@@ -34,8 +34,8 @@ async function addAudios(message, command) {
 
     // IF YOU ARE CONNECTED IN A CHANNEL
     if (message.member.voice.channel) {
-      clearTimeout(timeoutID)
       timeoutID = undefined
+      clearTimeout(timeoutID)
 
       try {
         //JOIN THE BOT TO YOUR VOICE CHANNEL
@@ -66,7 +66,7 @@ async function addAudios(message, command) {
 
 const callCommands = new MessageEmbed()
   .setColor("#050754")
-  .setTitle("OIA OS COMANDOS AI MEU OOOOOLOKO")
+  .setTitle("TOME!")
   .addFields({ name: "Comandos", value: commands });
 /*     embed.setAuthor("created by: Deivid Reinke Schiitz"); */
 
